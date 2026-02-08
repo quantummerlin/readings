@@ -1537,6 +1537,35 @@
             color: var(--primary);
         }
         
+        /* Age badge */
+        .age-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            background: rgba(var(--primary-rgb, 139, 92, 246), 0.1);
+            border: 1px solid rgba(var(--primary-rgb, 139, 92, 246), 0.25);
+            border-radius: 20px;
+        }
+        
+        /* Section intro epigraph */
+        .section-intro-epigraph {
+            padding: 14px 20px;
+            margin: 0 12px 8px;
+            font-style: italic;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: var(--text);
+            opacity: 0.8;
+            border-left: 3px solid var(--primary);
+            background: rgba(var(--primary-rgb, 139, 92, 246), 0.04);
+            border-radius: 0 8px 8px 0;
+        }
+        .section-intro-epigraph p { margin: 0; }
+        
         .opening-letter-body {
             text-align: left;
             max-width: 600px;
@@ -4388,6 +4417,7 @@
                 <div class="opening-letter-header">
                     <h1>Your Complete Moment in Time</h1>
                     <p class="reading-subtitle">Reading for <strong id="openingName">...</strong></p>
+                    <span id="ageBadge" class="age-badge" style="display:none;"></span>
                 </div>
                 <div class="opening-letter-body" id="openingLetterBody">
                     <p>At the exact moment you were born, the cosmos arranged itself in a pattern that has never existed before and will never exist again.</p>
@@ -4516,6 +4546,7 @@
     <script src="readings-extended.js?v=35"></script>
     <script src="love-blueprint.js?v=35"></script>
     <script src="tone-variations.js?v=35"></script>
+    <script src="age-language.js?v=1"></script>
     <script src="save-share.js?v=35"></script>
     <script src="export-pdf.js?v=2"></script>
     <script>
@@ -5020,6 +5051,11 @@
         function displayResults(userData, readings) {
             const config = BRAND_CONFIG;
             
+            // Initialize age-adaptive language system
+            if (typeof initAgeLanguage === 'function') {
+                initAgeLanguage(userData.birthDate);
+            }
+            
             // Always scroll to top on page load
             window.scrollTo(0, 0);
             
@@ -5045,6 +5081,25 @@
             
             // Set timestamp
             document.getElementById('timestamp').textContent = `Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}`;
+            
+            // Age-adapted opening letter
+            if (typeof getAgeOpeningLetter === 'function') {
+                const openingBody = document.getElementById('openingLetterBody');
+                if (openingBody) {
+                    const paragraphs = getAgeOpeningLetter();
+                    openingBody.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('') + 
+                        '<p class="opening-note">If any birth details are incorrect, tap "New Reading" to regenerate with accurate information.</p>';
+                }
+                // Show age badge
+                const ageTag = typeof getAgeTag === 'function' ? getAgeTag() : null;
+                const ageBadge = document.getElementById('ageBadge');
+                if (ageBadge && ageTag) {
+                    ageBadge.textContent = `${getAgeIcon()} ${ageTag}`;
+                    ageBadge.style.display = 'inline-block';
+                } else if (ageBadge) {
+                    ageBadge.style.display = 'none';
+                }
+            }
             
             // Build Reading Sections
             buildReadingSections(userData, readings);
@@ -5109,6 +5164,7 @@
             const celestialSectionWrapper = document.createElement('div');
             celestialSectionWrapper.className = 'reading-section active';
             const celestialSection = createSection('celestial', config.sections.celestial);
+            injectSectionIntro(celestialSection, 'celestial');
             
             // ============================================
             // A MOMENT IN TIME SUMMARY - Planetary Overview
@@ -6691,6 +6747,7 @@ Growth doesn't come from eliminating this tension — it comes from using it con
             const numbersSectionWrapper = document.createElement('div');
             numbersSectionWrapper.className = 'reading-section';
             const numbersSection = createSection('numbers', config.sections.numbers);
+            injectSectionIntro(numbersSection, 'numbers');
             
             // ============================================
             // NUMEROLOGY CALCULATION EXPLAINER
@@ -7244,6 +7301,7 @@ Growth doesn't come from eliminating this tension — it comes from using it con
             const soulSectionWrapper = document.createElement('div');
             soulSectionWrapper.className = 'reading-section';
             const soulSection = createSection('soul', config.sections.soul);
+            injectSectionIntro(soulSection, 'soul');
             
             // North Node with deep reading
             const northNodeReading = typeof DEEP_NORTH_NODE_READINGS !== 'undefined' && DEEP_NORTH_NODE_READINGS[northNode.name] 
@@ -7797,10 +7855,12 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                     []
                 ));
                 
-                // Parent guidance card
-                if (wrapup.parentGuidance) {
+                // Parent guidance card — only shown for baby/child age groups
+                const showParentCard = typeof shouldShowParentClosingCard === 'function' ? shouldShowParentClosingCard() : true;
+                if (wrapup.parentGuidance && showParentCard) {
+                    const parentLabel = typeof getParentGuidanceLabel === 'function' ? getParentGuidanceLabel() : 'Guidance for Parents & Caregivers';
                     wrapupSection.appendChild(createReadingCard(
-                        'Guidance for Parents & Caregivers',
+                        parentLabel,
                         `Nurturing ${userData.name}'s Potential`,
                         ['Parenting', 'Support', 'Understanding'],
                         wrapup.parentGuidance,
@@ -7881,6 +7941,23 @@ Growth doesn't come from eliminating this tension — it comes from using it con
             `;
             
             return section;
+        }
+
+        // Inject age-adapted section intro epigraph after the section header
+        function injectSectionIntro(sectionEl, sectionKey) {
+            if (typeof getAgeSectionIntro !== 'function') return;
+            const introText = getAgeSectionIntro(sectionKey);
+            if (!introText) return;
+            const introDiv = document.createElement('div');
+            introDiv.className = 'section-intro-epigraph';
+            introDiv.innerHTML = `<p>${introText}</p>`;
+            // Insert after the section header
+            const header = sectionEl.querySelector('.section-header');
+            if (header && header.nextSibling) {
+                sectionEl.insertBefore(introDiv, header.nextSibling);
+            } else {
+                sectionEl.appendChild(introDiv);
+            }
         }
 
         function createCustomSection(id, icon, name, description, readingCount = 0) {
@@ -8719,6 +8796,12 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                 tonedStrengthsArray = strengthsArray.map(s => applyToneVariations(s));
                 tonedChallengesArray = challengesArray.map(c => applyToneVariations(c));
             }
+            // Apply age-adaptive language transformations
+            if (typeof applyAgeLanguage === 'function') {
+                tonedContent = applyAgeLanguage(tonedContent);
+                tonedStrengthsArray = tonedStrengthsArray.map(s => applyAgeLanguage(s));
+                tonedChallengesArray = tonedChallengesArray.map(c => applyAgeLanguage(c));
+            }
             
             let keywordsHtml = '';
             if (keywordsArray.length > 0) {
@@ -9097,15 +9180,28 @@ Growth doesn't come from eliminating this tension — it comes from using it con
             const moonSign = readings.astrology.moonSign.name;
             const lifePath = readings.numerology.lifePath;
             
-            closingContainer.innerHTML = `
-                <div class="closing-card">
-                    <h3>${userData.name}'s Cosmic Story Continues...</h3>
-                    <p>You've just explored ${userData.name}'s complete moment in time — a unique constellation of energies that has never existed before and will never exist again in quite the same way.</p>
-                    <p>With their ${sunSign} Sun illuminating their core identity, ${moonSign} Moon nurturing their emotional world, and Life Path ${lifePath} guiding their soul's journey, ${userData.name} carries a sacred combination of gifts waiting to unfold.</p>
-                    <p>This reading is a snapshot of potential — the cosmic seeds planted at birth. How these energies blossom depends on love, nurturing, and the unique choices this soul will make.</p>
-                    <p class="closing-affirmation">"Every soul arrives with a purpose. ${userData.name}'s purpose is written in the stars."</p>
-                </div>
-            `;
+            // Use age-adapted closing if available
+            if (typeof getAgeClosing === 'function') {
+                const closing = getAgeClosing({ name: userData.name, sunSign, moonSign, lifePath });
+                const bodyParagraphs = closing.body.split('\n\n').map(p => `<p>${p}</p>`).join('');
+                closingContainer.innerHTML = `
+                    <div class="closing-card">
+                        <h3>${closing.heading}</h3>
+                        ${bodyParagraphs}
+                        <p class="closing-affirmation">"${closing.quote}"</p>
+                    </div>
+                `;
+            } else {
+                closingContainer.innerHTML = `
+                    <div class="closing-card">
+                        <h3>${userData.name}'s Cosmic Story Continues...</h3>
+                        <p>You've just explored ${userData.name}'s complete moment in time — a unique constellation of energies that has never existed before and will never exist again in quite the same way.</p>
+                        <p>With their ${sunSign} Sun illuminating their core identity, ${moonSign} Moon nurturing their emotional world, and Life Path ${lifePath} guiding their soul's journey, ${userData.name} carries a sacred combination of gifts waiting to unfold.</p>
+                        <p>This reading is a snapshot of potential — the cosmic seeds planted at birth. How these energies blossom depends on love, nurturing, and the unique choices this soul will make.</p>
+                        <p class="closing-affirmation">"Every soul arrives with a purpose. ${userData.name}'s purpose is written in the stars."</p>
+                    </div>
+                `;
+            }
         }
         
         // ============================================
