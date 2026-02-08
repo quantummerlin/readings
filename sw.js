@@ -1,5 +1,5 @@
 // A Moment in Time - Service Worker
-const CACHE_NAME = 'moment-in-time-v36';
+const CACHE_NAME = 'moment-in-time-v37';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
