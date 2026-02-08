@@ -44,25 +44,40 @@ async function exportPDFBook() {
         return;
     }
 
-    // Show loading overlay
+    // Step 1: Preload the book fonts BEFORE building anything
+    await loadBookFonts();
+
+    // Show loading overlay (this covers the screen so the render container is hidden behind it)
     const overlay = showPDFLoadingOverlay();
     
     try {
         // Build the A5 book HTML
         const bookHTML = buildBookHTML(userData, readings);
         
-        // Create a hidden container for rendering
+        // Create render container — ON SCREEN but behind the overlay
+        // html2canvas cannot capture off-screen elements
         const container = document.createElement('div');
         container.id = 'pdf-render-container';
-        container.style.cssText = 'position:fixed; left:-9999px; top:0; z-index:-1;';
+        container.style.cssText = `
+            position: fixed; top: 0; left: 0;
+            width: 148mm; 
+            z-index: 99998;
+            opacity: 0;
+            pointer-events: none;
+            overflow: auto;
+        `;
         container.innerHTML = bookHTML;
         document.body.appendChild(container);
         
-        // Wait for fonts and images to load
+        // Wait for fonts to be fully ready and layout to settle
         await document.fonts.ready;
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 1500));
         
         const element = container.querySelector('.a5-book');
+        
+        // Make visible for html2canvas capture (still behind overlay)
+        container.style.opacity = '1';
+        await new Promise(r => setTimeout(r, 300));
         
         // Configure html2pdf
         const opt = {
@@ -74,7 +89,11 @@ async function exportPDFBook() {
                 useCORS: true,
                 letterRendering: true,
                 logging: false,
-                backgroundColor: PDF_BOOK.colors.pageBg
+                backgroundColor: PDF_BOOK.colors.pageBg,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: 560,
+                windowHeight: 794
             },
             jsPDF: {
                 unit: 'mm',
@@ -194,6 +213,34 @@ function showPDFSuccessMessage(name) {
 }
 
 // ============================================
+// FONT PRELOADING
+// ============================================
+
+async function loadBookFonts() {
+    // Add Google Fonts link to <head> if not already present
+    if (!document.getElementById('pdf-book-fonts')) {
+        const link = document.createElement('link');
+        link.id = 'pdf-book-fonts';
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap';
+        document.head.appendChild(link);
+    }
+    
+    // Wait for fonts to actually load
+    try {
+        await document.fonts.load('400 16px "EB Garamond"');
+        await document.fonts.load('600 16px "Cormorant Garamond"');
+        await document.fonts.load('italic 400 16px "EB Garamond"');
+    } catch (e) {
+        console.warn('[PDF Export] Font preload warning:', e);
+    }
+    
+    // Extra safety wait
+    await new Promise(r => setTimeout(r, 500));
+    console.log('[PDF Export] Fonts loaded');
+}
+
+// ============================================
 // BUILD COMPLETE A5 BOOK HTML
 // ============================================
 
@@ -262,54 +309,64 @@ function collectReadingSections() {
             const resultValue = card.querySelector('.result-value')?.textContent || '';
             const icon = card.querySelector('.card-icon')?.textContent || '';
             
-            // Get the content from the expanded body
-            const body = card.querySelector('.reading-card-body') || card.querySelector('.reading-content');
+            // Get the content — cards are collapsed (max-height:0) but the HTML is still in the DOM
+            // Look for .reading-card-content > .reading-content first (the actual text)
+            // then fall back to .reading-card-body or .reading-card-content
+            const contentEl = card.querySelector('.reading-content') 
+                || card.querySelector('.reading-card-content') 
+                || card.querySelector('.reading-card-body');
             let content = '';
-            if (body) {
-                // Clone and clean
-                const clone = body.cloneNode(true);
-                clone.querySelectorAll('.mark-read-btn, .read-badge, .expand-icon, button, .keyword-tag, script').forEach(el => el.remove());
-                content = clone.innerHTML;
+            if (contentEl) {
+                const clone = contentEl.cloneNode(true);
+                // Remove all interactive/UI elements
+                clone.querySelectorAll('.mark-read-btn, .read-badge, .expand-icon, button, script, .keyword-tag, .keywords, .strengths-challenges').forEach(el => el.remove());
+                content = clone.innerHTML.trim();
             }
             
             // Also grab keywords if present
             const keywords = [];
-            card.querySelectorAll('.keyword-tag').forEach(kw => {
-                keywords.push(kw.textContent.trim());
+            card.querySelectorAll('.keyword-tag, .keyword').forEach(kw => {
+                const text = kw.textContent.trim();
+                if (text) keywords.push(text);
             });
             
             // Strengths and challenges
             let strengths = [];
             let challenges = [];
-            card.querySelectorAll('.strengths li, .strength-item').forEach(li => strengths.push(li.textContent.trim()));
-            card.querySelectorAll('.challenges li, .challenge-item').forEach(li => challenges.push(li.textContent.trim()));
+            const scBlock = card.querySelector('.strengths-challenges');
+            if (scBlock) {
+                scBlock.querySelectorAll('.strengths li, .strength-item').forEach(li => strengths.push(li.textContent.trim()));
+                scBlock.querySelectorAll('.challenges li, .challenge-item').forEach(li => challenges.push(li.textContent.trim()));
+            }
             
-            if (title) {
+            if (title && (content || resultValue)) {
                 cards.push({ title, resultValue, icon, content, keywords, strengths, challenges });
             }
         });
         
-        // Also collect sub-sections
+        // Also collect sub-sections (like Cosmic Snapshot)
         section.querySelectorAll('.sub-section').forEach(sub => {
             const subHeader = sub.querySelector('.sub-section-header');
             const subTitle = subHeader ? (subHeader.querySelector('h4')?.textContent || subHeader.querySelector('h3')?.textContent || '') : '';
             const subBody = sub.querySelector('.sub-section-body');
             
             if (subBody && subTitle) {
-                let subContent = '';
                 const clone = subBody.cloneNode(true);
-                clone.querySelectorAll('button, script').forEach(el => el.remove());
-                subContent = clone.innerHTML;
+                clone.querySelectorAll('button, script, .sub-section-arrow').forEach(el => el.remove());
+                const subContent = clone.innerHTML.trim();
                 
-                cards.push({ title: subTitle, resultValue: '', icon: '', content: subContent, keywords: [], strengths: [], challenges: [] });
+                if (subContent) {
+                    cards.push({ title: subTitle, resultValue: '', icon: '', content: subContent, keywords: [], strengths: [], challenges: [] });
+                }
             }
         });
         
-        if (cards.length > 0 || sectionName) {
+        if (cards.length > 0) {
             sections.push({ name: sectionName.trim(), icon: sectionIcon.trim(), description: sectionDesc.trim(), cards });
         }
     });
     
+    console.log('[PDF Export] Collected', sections.length, 'sections with', sections.reduce((n,s) => n + s.cards.length, 0), 'total readings');
     return sections;
 }
 
@@ -323,8 +380,6 @@ function buildBookStyles() {
     /* A5 PAPERBACK BOOK STYLES                 */
     /* 148mm × 210mm with book-quality typography */
     /* ========================================= */
-    
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
     
     .a5-book {
         width: 148mm;
