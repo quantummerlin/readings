@@ -1,5 +1,5 @@
 // A Moment in Time - Service Worker
-const CACHE_NAME = 'moment-in-time-v38';
+const CACHE_NAME = 'moment-in-time-v39';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -14,7 +14,7 @@ const ASSETS_TO_CACHE = [
     '/tone-variations.js',
     '/age-language.js',
     '/save-share.js',
-    '/export-pdf.js',
+    '/book-generator.js',
     '/manifest.json',
     '/Amomentintime.jpg'
 ];
