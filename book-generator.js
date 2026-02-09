@@ -149,6 +149,13 @@ class BookTemplateEngine {
         return result;
     }
 
+    // Keys that carry pre-built HTML and must NOT be escaped
+    static HTML_PASSTHROUGH = new Set([
+        'readings', 'entries', 'snapshot',
+        'bodyHTML', 'closingBodyHTML', 'colophonText',
+        'dedication', 'details'
+    ]);
+
     valueToHTML(value, key) {
         if (value === null || value === undefined) return '';
         if (Array.isArray(value)) {
@@ -156,7 +163,7 @@ class BookTemplateEngine {
             if (key === 'gifts' || key === 'growthAreas') return value.map(v => `<li>${this.esc(String(v))}</li>`).join('');
             return value.map(v => this.valueToHTML(v, key)).join('<br>');
         }
-        if (key.includes('HTML')) return value;
+        if (key.includes('HTML') || BookTemplateEngine.HTML_PASSTHROUGH.has(key)) return value;
         return this.esc(String(value));
     }
 
