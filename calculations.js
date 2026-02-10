@@ -1736,7 +1736,7 @@ function calculateAllReadings(userData) {
         // Metadata
         meta: {
             generatedAt: new Date().toISOString(),
-            totalReadings: 82
+            totalReadings: 95
         }
     };
 }

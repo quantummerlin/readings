@@ -4547,7 +4547,7 @@
     <script src="love-blueprint.js?v=35"></script>
     <script src="tone-variations.js?v=35"></script>
     <script src="age-language.js?v=1"></script>
-    <script src="life-pattern-readings.js?v=1"></script>
+    <script src="life-pattern-readings.js?v=2"></script>
     <script src="save-share.js?v=35"></script>
     <script src="book-generator.js?v=1"></script>
     <script>
@@ -7917,16 +7917,37 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                         tendencyOrder.forEach(t => {
                             const data = cogTend[t.key];
                             if (data) {
+                                // Build intensity and source info
+                                let intensityLabel = data.intensity >= 4 ? 'Very Strong' : (data.intensity >= 2 ? 'Strong' : 'Moderate');
+                                let enrichedDesc = data.description;
+                                
+                                // Add sources if available
+                                if (data.sources && data.sources.length > 0) {
+                                    enrichedDesc += '\n\n<strong>Key Influences:</strong> ' + data.sources.join(' • ');
+                                }
+                                
                                 cogSection.appendChild(createReadingCard(
                                     t.title,
-                                    data.label,
-                                    [data.label],
-                                    data.description,
+                                    data.label + ' (' + intensityLabel + ')',
+                                    [data.label, intensityLabel],
+                                    enrichedDesc,
                                     [],
                                     []
                                 ));
                             }
                         });
+                        
+                        // Cross-dimension synthesis card
+                        if (cogTend.synthesis) {
+                            cogSection.appendChild(createReadingCard(
+                                'Cognitive Synthesis',
+                                'How your thinking dimensions interact',
+                                ['Integration', 'Cross-Pattern', 'Meta-Profile'],
+                                'When we look at how your cognitive dimensions interact — not just each one in isolation — a more nuanced picture emerges:\n\n' + cogTend.synthesis,
+                                [],
+                                []
+                            ));
+                        }
                         
                         cogWrapper.appendChild(cogSection);
                         container.appendChild(cogWrapper);
@@ -7952,7 +7973,7 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                         // Capstone
                         nameSection.appendChild(createReadingCard(
                             'Capstone — The Letter ' + nameAnalysis.capstone.letter,
-                            'How you complete what you start',
+                            nameAnalysis.capstone.trait || 'How you complete what you start',
                             ['Completion Style', 'Follow-Through', 'Closing Energy'],
                             'The capstone is the last letter of your first name — it reveals how you finish projects, close chapters, and bring things to completion.\n\n' + nameAnalysis.capstone.reading,
                             [],
@@ -7991,6 +8012,18 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                             [],
                             []
                         ));
+                        
+                        // Name Synthesis (cornerstone + capstone interaction)
+                        if (nameAnalysis.synthesis) {
+                            nameSection.appendChild(createReadingCard(
+                                'Name Arc: ' + nameAnalysis.cornerstone.letter + ' → ' + nameAnalysis.capstone.letter,
+                                nameAnalysis.nameProfile || 'Your Name\'s Energetic Signature',
+                                ['Start-to-Finish Arc', 'Name Psychology', nameAnalysis.nameProfile || 'Profile'],
+                                'The interaction between how your name begins (cornerstone) and how it ends (capstone) creates an arc — a sonic journey that shapes how people experience you from first contact to lasting impression.\n\n' + nameAnalysis.synthesis,
+                                [],
+                                []
+                            ));
+                        }
                         
                         nameWrapper.appendChild(nameSection);
                         container.appendChild(nameWrapper);
@@ -8059,6 +8092,12 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                         // Each probability category
                         Object.entries(probWindows.windows).forEach(([key, cat]) => {
                             let windowText = '';
+                            
+                            // Chart-based personalization (unique to this person's chart)
+                            if (cat.chartInsight) {
+                                windowText += '<strong>📊 Your Chart Profile:</strong>\n' + cat.chartInsight + '\n\n';
+                            }
+                            
                             if (cat.active.length > 0) {
                                 windowText += '<strong style="color:var(--primary-color,#FF69B4)">⚡ ACTIVE NOW:</strong>\n';
                                 cat.active.forEach(w => {
@@ -8080,7 +8119,8 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                             }
                             if (!windowText) windowText = 'Your primary windows for this category are still approaching.';
                             
-                            const statusKeywords = cat.active.length > 0 ? ['Active Window', 'High Probability'] : (cat.upcoming.length > 0 ? ['Upcoming', 'Preparing'] : ['Completed Cycle']);
+                            const modLabel = cat.personalModifier > 2 ? 'Amplified' : (cat.personalModifier < -2 ? 'Dampened' : 'Baseline');
+                            const statusKeywords = cat.active.length > 0 ? ['Active Window', modLabel] : (cat.upcoming.length > 0 ? ['Upcoming', modLabel] : ['Completed Cycle', modLabel]);
                             
                             probSection.appendChild(createReadingCard(
                                 cat.icon + ' ' + cat.title,
@@ -8120,10 +8160,32 @@ Growth doesn't come from eliminating this tension — it comes from using it con
                         
                         if (locStrategy.powerAlignment) {
                             locSection.appendChild(createReadingCard(
-                                '⚡ Power Alignment Detected',
+                                '⚡ Career-Identity Power Alignment',
                                 'Your career and identity axes share an element',
                                 ['Rare Alignment', 'Amplified Impact'],
                                 locStrategy.powerAlignment,
+                                [],
+                                []
+                            ));
+                        }
+                        
+                        if (locStrategy.driveAlignment) {
+                            locSection.appendChild(createReadingCard(
+                                '⚡ Drive-Career Alignment',
+                                'Your competitive energy naturally fuels your career path',
+                                ['Mars-MC Alignment', 'Amplified Drive'],
+                                locStrategy.driveAlignment,
+                                [],
+                                []
+                            ));
+                        }
+                        
+                        if (locStrategy.rootAlignment) {
+                            locSection.appendChild(createReadingCard(
+                                '⚡ Emotional-Home Alignment',
+                                'Your heart and your roots want the same thing',
+                                ['Moon-IC Alignment', 'Deep Belonging'],
+                                locStrategy.rootAlignment,
                                 [],
                                 []
                             ));

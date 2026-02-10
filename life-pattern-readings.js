@@ -189,18 +189,18 @@ function calculateBiologicalTiming(readings) {
 
 function getSaturnSignFlavor(sign) {
     const flavors = {
-        Aries: "Your lessons revolve around patience, impulse control, and learning that true leadership means earning authority rather than seizing it.",
-        Taurus: "Your lessons center on material security, self-worth independent of possessions, and building something that endures beyond comfort.",
-        Gemini: "Your lessons involve depth over breadth, committing to ideas long enough to master them, and learning that real communication requires listening.",
-        Cancer: "Your lessons touch emotional boundaries, the difference between caretaking and controlling, and building inner security that doesn't depend on others.",
-        Leo: "Your lessons address authentic self-expression, ego maturity, and discovering that true recognition comes from substance rather than performance.",
-        Virgo: "Your lessons involve perfectionism, the courage to be 'good enough,' and understanding that service without burnout requires boundaries.",
-        Libra: "Your lessons center on authentic relationships, the courage to disagree, and building partnerships based on truth rather than harmony at any cost.",
-        Scorpio: "Your lessons address power dynamics, vulnerability as strength, and the transformation that comes from releasing control.",
-        Sagittarius: "Your lessons involve intellectual humility, committing to one path long enough to go deep, and finding meaning through discipline rather than escape.",
-        Capricorn: "Saturn is at home here — your lessons are intensified around ambition, authority, and the difference between achievement and fulfillment.",
-        Aquarius: "Your lessons center on individuality within community, the responsibility of innovation, and learning that rebellion without construction is just noise.",
-        Pisces: "Your lessons involve boundaries between self and others, grounding spiritual ideals in practical action, and finding structure within flow."
+        Aries: "Your Saturn in Aries means your deepest lessons revolve around patience, impulse control, and learning that true leadership means earning authority rather than seizing it. You may have experienced early frustrations around asserting yourself — either being told you were 'too much' or feeling blocked every time you tried to lead. The Saturn Return restructures your relationship with anger, initiative, and personal power. When mature, Saturn in Aries produces leaders of extraordinary discipline who combine courage with restraint — generals, not soldiers.",
+        Taurus: "Your Saturn in Taurus means your deepest lessons center on material security, self-worth independent of possessions, and building something that endures beyond mere comfort. You may have experienced early scarcity or an unstable relationship with money and resources that made security feel like it required constant vigilance. The Saturn Return restructures your relationship with value — what you're worth, what's worth having, what endures. When mature, Saturn in Taurus produces people of remarkable financial wisdom and an almost architectural sense of lasting value.",
+        Gemini: "Your Saturn in Gemini means your deepest lessons involve depth over breadth, committing to ideas long enough to master them, and learning that real communication requires listening as much as speaking. You may have felt intellectually inadequate early on, or scattered across too many interests to develop expertise in any. The Saturn Return forces a reckoning with intellectual discipline — choosing your lanes and going deep. When mature, Saturn in Gemini produces the most rigorous communicators and thinkers — people who combine broad knowledge with genuine depth.",
+        Cancer: "Your Saturn in Cancer means your deepest lessons touch emotional boundaries, the difference between caretaking and controlling, and building inner security that doesn't depend on others' approval or presence. You may have experienced emotional coldness or unavailability from caretakers, creating a pattern of either walls or over-attachment. The Saturn Return restructures your entire emotional foundation — how you give care, receive care, and define home. When mature, Saturn in Cancer produces people of extraordinary emotional strength who provide genuine security to others without losing themselves.",
+        Leo: "Your Saturn in Leo means your deepest lessons address authentic self-expression, ego maturity, and discovering that true recognition comes from substance rather than performance. You may have been shamed for wanting attention, or felt invisible despite desperate efforts to be seen. The Saturn Return forces you to find the difference between seeking applause and expressing your genuine creative identity. When mature, Saturn in Leo produces quietly commanding presences — people who don't need the spotlight because they carry their own light.",
+        Virgo: "Your Saturn in Virgo means your deepest lessons involve perfectionism, the courage to be 'good enough,' and understanding that service without burnout requires boundaries. You may have internalized impossibly high standards early — either imposed from outside or self-generated — creating an exhausting cycle of effort and self-criticism. The Saturn Return restructures your relationship with competence and service, teaching you that excellence is sustainable only when paired with self-compassion. When mature, Saturn in Virgo produces the most skilled and reliable practitioners in any field — masters of craft who've made peace with imperfection.",
+        Libra: "Your Saturn in Libra means your deepest lessons center on authentic relationships, the courage to disagree, and building partnerships based on truth rather than harmony at any cost. You may have learned early that keeping the peace required suppressing your own needs, creating relationships that looked good but felt hollow. The Saturn Return forces a reckoning with relational authenticity — you learn that real partnership requires conflict, negotiation, and the willingness to be disliked. When mature, Saturn in Libra produces exceptional mediators, negotiators, and partners who build relationships of genuine depth and mutual respect.",
+        Scorpio: "Your Saturn in Scorpio means your deepest lessons address power dynamics, vulnerability as strength, and the transformation that comes from releasing control. You may have encountered power abuse, betrayal, or emotional intensity early that taught you to never let your guard down. The Saturn Return forces you through the fire — demanding that you face your deepest fears, release control where it's not serving you, and discover that true power comes from being unafraid of your own depths. When mature, Saturn in Scorpio produces people of almost frightening psychological clarity and resilience — they've been through the underworld and came back with wisdom.",
+        Sagittarius: "Your Saturn in Sagittarius means your deepest lessons involve intellectual humility, committing to one path long enough to go deep, and finding meaning through discipline rather than escape. You may have experienced restriction around freedom, travel, or belief systems — feeling trapped in environments too small for your vision. The Saturn Return forces a reckoning with your philosophy of life, demanding that you move from theoretical meaning to lived wisdom. When mature, Saturn in Sagittarius produces profound teachers and thought leaders who combine visionary thinking with practical grounding — they don't just believe, they build upon their beliefs.",
+        Capricorn: "Saturn is at home in Capricorn — your lessons are intensified around ambition, authority, and the difference between achievement and fulfillment. You may have felt an overwhelming pressure to succeed from a very young age, as if your worth was contingent on your accomplishments. The Saturn Return is particularly powerful here, often coinciding with either a major professional breakthrough or a complete dismantling of your achievement structure to rebuild on more authentic foundations. When mature, Saturn in Capricorn produces people of exceptional authority and institutional vision — the builders of things that outlast generations.",
+        Aquarius: "Your Saturn in Aquarius means your deepest lessons center on individuality within community, the responsibility of innovation, and learning that rebellion without construction is just noise. You may have felt like an outsider — too different for conventional groups, too structured for countercultural ones. The Saturn Return forces you to reconcile your individuality with your need for community, teaching you that true innovation requires both vision and the patience to build systems that support it. When mature, Saturn in Aquarius produces revolutionary builders — people who don't just imagine a better world but create the infrastructure for it.",
+        Pisces: "Your Saturn in Pisces means your deepest lessons involve boundaries between self and others, grounding spiritual ideals in practical action, and finding structure within flow. You may have struggled with feeling overwhelmed by others' emotions, difficulty distinguishing your feelings from the collective, or a sense that spiritual life and practical life were incompatible. The Saturn Return forces you to build the container for your sensitivity — learning that boundaries aren't walls, they're the banks of the river that give your flow direction. When mature, Saturn in Pisces produces healers, artists, and spiritual guides of extraordinary depth who've learned to channel the infinite through disciplined practice."
     };
     return flavors[sign] || "";
 }
@@ -288,15 +288,16 @@ function calculateIdentityCompression(readings) {
     const moonSign = getSignName(readings.astrology.moonSign);
     const risingSign = getSignName(readings.astrology.risingSign);
     const mercurySign = getSignName(readings.astrology.mercurySign);
+    const venusSign = getSignName(readings.astrology.venusSign);
     const marsSign = getSignName(readings.astrology.marsSign);
     const saturnSign = getSignName(readings.astrology.saturnSign);
     const jupiterSign = getSignName(readings.astrology.jupiterSign);
     const lifePath = readings.numerology.lifePath;
     
-    // Element scoring (3x weight for Sun, 2x Moon, 2x Rising, 1x rest)
+    // Element scoring (3x weight for Sun, 2x Moon, 2x Rising, 1.5x Venus, 1x rest)
     const allSigns = [
         { sign: sunSign, w: 3 }, { sign: moonSign, w: 2 }, { sign: risingSign, w: 2 },
-        { sign: mercurySign, w: 1 }, { sign: marsSign, w: 1.5 }, { sign: saturnSign, w: 1 }, { sign: jupiterSign, w: 1 }
+        { sign: venusSign, w: 1.5 }, { sign: mercurySign, w: 1 }, { sign: marsSign, w: 1.5 }, { sign: saturnSign, w: 1 }, { sign: jupiterSign, w: 1 }
     ];
     
     const elementTally = { Fire: 0, Earth: 0, Air: 0, Water: 0 };
@@ -345,6 +346,22 @@ function calculateIdentityCompression(readings) {
     if (['Capricorn','Virgo','Taurus'].includes(saturnSign)) { scores.builder += 2; scores.operator += 1; }
     if (['Scorpio','Aries','Leo'].includes(saturnSign)) { scores.disruptor += 1.5; }
     if (['Aquarius','Gemini','Sagittarius'].includes(saturnSign)) { scores.strategist += 1.5; scores.visionary += 1; }
+    
+    // Venus sign modifiers (values & relational style)
+    if (['Taurus','Cancer','Pisces'].includes(venusSign)) { scores.stabilizer += 2; }
+    if (['Aries','Sagittarius','Aquarius'].includes(venusSign)) { scores.disruptor += 1; scores.pioneer += 1; }
+    if (['Gemini','Libra'].includes(venusSign)) { scores.synthesizer += 1.5; }
+    if (['Capricorn','Virgo'].includes(venusSign)) { scores.operator += 1.5; }
+    if (['Scorpio'].includes(venusSign)) { scores.strategist += 1; scores.visionary += 1; }
+    if (['Leo'].includes(venusSign)) { scores.pioneer += 1; }
+    
+    // Rising sign modifiers (instinctive operating mode)
+    if (['Aries','Sagittarius'].includes(risingSign)) { scores.pioneer += 2; }
+    if (['Taurus','Virgo','Capricorn'].includes(risingSign)) { scores.builder += 1.5; scores.operator += 1; }
+    if (['Gemini','Libra','Aquarius'].includes(risingSign)) { scores.synthesizer += 1.5; }
+    if (['Cancer','Pisces'].includes(risingSign)) { scores.stabilizer += 1.5; }
+    if (['Scorpio'].includes(risingSign)) { scores.strategist += 1.5; scores.disruptor += 1; }
+    if (['Leo'].includes(risingSign)) { scores.pioneer += 1; scores.visionary += 1; }
     
     // Stellium boost
     if (readings.astrology.stelliums && readings.astrology.stelliums.length > 0) {
@@ -458,19 +475,132 @@ function calculateProbabilityWindows(readings) {
     const age = readings.lifeCycles.age.years;
     const results = {};
     
+    // Extract chart factors for personalization
+    const marsSign = getSignName(readings.astrology.marsSign);
+    const saturnSign = getSignName(readings.astrology.saturnSign);
+    const jupiterSign = getSignName(readings.astrology.jupiterSign);
+    const venusSign = getSignName(readings.astrology.venusSign);
+    const moonSign = getSignName(readings.astrology.moonSign);
+    const sunSign = getSignName(readings.astrology.sunSign);
+    const mcSign = getSignName(readings.astrology.midheaven);
+    const risingSign = getSignName(readings.astrology.risingSign);
+    const lifePath = readings.numerology.lifePath;
+    const marsElement = ELEMENT_MAP[marsSign] || '';
+    const saturnElement = ELEMENT_MAP[saturnSign] || '';
+    const jupiterElement = ELEMENT_MAP[jupiterSign] || '';
+    const moonElement = ELEMENT_MAP[moonSign] || '';
+    const mcModality = MODALITY_MAP[mcSign] || '';
+    
+    // Chart-based probability modifiers per category
+    const chartModifiers = {};
+    
+    // CAREER SHIFT modifiers
+    let careerMod = 0;
+    let careerInsight = '';
+    if (mcModality === 'Cardinal') { careerMod += 2; careerInsight += `Your Cardinal Midheaven (${mcSign}) makes you naturally inclined toward initiating career changes rather than enduring stagnation. `; }
+    else if (mcModality === 'Fixed') { careerMod -= 1; careerInsight += `Your Fixed Midheaven (${mcSign}) means career shifts take longer to gestate but tend to be more permanent and well-considered. `; }
+    else if (mcModality === 'Mutable') { careerMod += 1; careerInsight += `Your Mutable Midheaven (${mcSign}) gives you career adaptability — you shift naturally through evolution rather than revolution. `; }
+    if (marsElement === 'Fire') { careerMod += 1; careerInsight += `Mars in a fire sign (${marsSign}) adds impulsive career energy — you act on professional dissatisfaction faster than most. `; }
+    if ([1, 5].includes(lifePath)) { careerMod += 1; careerInsight += `Life Path ${lifePath} amplifies your change-readiness — you get restless in careers that stop challenging you. `; }
+    if ([4, 6].includes(lifePath)) { careerMod -= 1; careerInsight += `Life Path ${lifePath} adds career loyalty — you tend to optimize within existing structures before pivoting. `; }
+    if (saturnElement === 'Earth') { careerMod -= 1; careerInsight += `Saturn in an earth sign (${saturnSign}) adds professional conservatism — your career shifts are deliberate, never impulsive. `; }
+    chartModifiers.careerShift = { modifier: careerMod, insight: careerInsight.trim() };
+    
+    // MARRIAGE/PARTNERSHIP modifiers
+    let marriageMod = 0;
+    let marriageInsight = '';
+    if (['Libra','Taurus'].includes(venusSign)) { marriageMod += 2; marriageInsight += `Venus in ${venusSign} (one of Venus's home signs) strongly inclines you toward committed partnership — your probability windows are amplified. `; }
+    else if (['Aries','Scorpio','Aquarius'].includes(venusSign)) { marriageMod -= 1; marriageInsight += `Venus in ${venusSign} values autonomy in love — you may form partnerships later or need unconventional structures. `; }
+    if (['Cancer','Libra','Pisces'].includes(moonSign)) { marriageMod += 1; marriageInsight += `Moon in ${moonSign} deepens your need for emotional partnership — you seek bonding more actively than most. `; }
+    if (['Aquarius','Sagittarius','Aries'].includes(moonSign)) { marriageMod -= 1; marriageInsight += `Moon in ${moonSign} needs significant freedom within partnership — commitment may happen later or take unconventional forms. `; }
+    if ([2, 6].includes(lifePath)) { marriageMod += 2; marriageInsight += `Life Path ${lifePath} is fundamentally partnership-oriented — your entire life trajectory bends toward finding and maintaining deep connection. `; }
+    if ([1, 7].includes(lifePath)) { marriageMod -= 1; marriageInsight += `Life Path ${lifePath} is independence-focused — partnerships form when they serve growth, not social expectation. `; }
+    chartModifiers.marriage = { modifier: marriageMod, insight: marriageInsight.trim() };
+    
+    // ENTREPRENEURSHIP modifiers
+    let entreprMod = 0;
+    let entreprInsight = '';
+    if (marsElement === 'Fire') { entreprMod += 2; entreprInsight += `Mars in ${marsSign} gives you entrepreneurial fire — you have the drive, risk tolerance, and competitive instinct that startups demand. `; }
+    else if (marsElement === 'Earth') { entreprMod += 1; entreprInsight += `Mars in ${marsSign} favors entrepreneurship through methodical execution — you build businesses that last, not flash-in-the-pan ventures. `; }
+    if (['Sagittarius','Aries','Leo'].includes(jupiterSign)) { entreprMod += 1; entreprInsight += `Jupiter in ${jupiterSign} amplifies entrepreneurial luck and expansion — opportunities tend to appear when you commit to independence. `; }
+    if ([1, 8].includes(lifePath)) { entreprMod += 2; entreprInsight += `Life Path ${lifePath} is the classic entrepreneurial path — you're wired to build something that bears your signature. `; }
+    if ([22].includes(lifePath)) { entreprMod += 2; entreprInsight += `Life Path 22 (Master Builder) has the highest entrepreneurial ceiling of any Life Path — you're capable of building at institutional scale. `; }
+    if (['Capricorn','Aries','Scorpio'].includes(mcSign)) { entreprMod += 1; entreprInsight += `Your ${mcSign} Midheaven supports entrepreneurial authority — you're credible as a founder, not just an employee. `; }
+    if ([4, 6].includes(lifePath)) { entreprMod -= 1; entreprInsight += `Life Path ${lifePath} may prefer entrepreneurship within structures (intrapreneurship, franchising) over high-risk startups. `; }
+    chartModifiers.entrepreneurship = { modifier: entreprMod, insight: entreprInsight.trim() };
+    
+    // RELOCATION modifiers
+    let relocMod = 0;
+    let relocInsight = '';
+    const moonModality = MODALITY_MAP[moonSign] || '';
+    if (moonModality === 'Mutable') { relocMod += 2; relocInsight += `Your Mutable Moon (${moonSign}) craves environmental variety — you're emotionally energized by new places and grow restless when rooted too long. `; }
+    else if (moonModality === 'Fixed') { relocMod -= 2; relocInsight += `Your Fixed Moon (${moonSign}) creates deep roots wherever you land — relocations are emotionally costly and require strong motivation. `; }
+    if (['Sagittarius','Gemini'].includes(jupiterSign)) { relocMod += 1; relocInsight += `Jupiter in ${jupiterSign} expands through travel and cross-cultural experience — relocation often brings your biggest growth. `; }
+    if ([5].includes(lifePath)) { relocMod += 2; relocInsight += `Life Path 5 is the nomadic path — multiple relocations are not just likely, they're essential to your development. `; }
+    if ([4].includes(lifePath)) { relocMod -= 1; relocInsight += `Life Path 4 builds through stability — relocations work best when they serve a long-term structural plan, not restlessness. `; }
+    if (['Cancer','Taurus'].includes(moonSign)) { relocMod -= 1; relocInsight += `Moon in ${moonSign} needs environmental continuity — if you relocate, maintaining emotional anchors (objects, rituals, people) is critical. `; }
+    chartModifiers.relocation = { modifier: relocMod, insight: relocInsight.trim() };
+    
+    // REINVENTION modifiers
+    let reinventMod = 0;
+    let reinventInsight = '';
+    if (['Scorpio'].includes(sunSign) || ['Scorpio'].includes(risingSign)) { reinventMod += 2; reinventInsight += `Scorpio prominent in your chart (${['Scorpio'].includes(sunSign) ? 'Sun' : 'Rising'}) makes psychological reinvention not just likely but necessary — you cycle through identities as a core life pattern. `; }
+    if (['Aquarius','Sagittarius'].includes(sunSign)) { reinventMod += 1; reinventInsight += `Your ${sunSign} Sun resists identity stagnation — reinvention comes naturally when your current self no longer matches your evolving vision. `; }
+    if ([5, 7, 9].includes(lifePath)) { reinventMod += 2; reinventInsight += `Life Path ${lifePath} undergoes more reinvention cycles than average — identity is not a fixed destination for you, it's an ongoing experiment. `; }
+    if ([4, 8].includes(lifePath)) { reinventMod -= 1; reinventInsight += `Life Path ${lifePath} reinvents through accumulation rather than demolition — you add layers rather than shedding old ones. `; }
+    if (['Scorpio','Pisces','Cancer'].includes(moonSign)) { reinventMod += 1; reinventInsight += `Your water Moon (${moonSign}) processes reinvention emotionally and deeply — transformations take time but penetrate to the core. `; }
+    chartModifiers.reinvention = { modifier: reinventMod, insight: reinventInsight.trim() };
+    
+    // FINANCIAL EXPANSION modifiers
+    let financeMod = 0;
+    let financeInsight = '';
+    if (['Taurus','Capricorn','Virgo'].includes(jupiterSign)) { financeMod += 1; financeInsight += `Jupiter in ${jupiterSign} (earth sign) channels expansion into material and financial growth — your wealth-building instincts are grounded and practical. `; }
+    if (['Sagittarius','Leo'].includes(jupiterSign)) { financeMod += 1; financeInsight += `Jupiter in ${jupiterSign} attracts financial opportunities through visibility, generosity, and bold positioning — money follows your confidence. `; }
+    if ([8].includes(lifePath)) { financeMod += 3; financeInsight += `Life Path 8 is the money path — financial expansion isn't just possible, it's your primary arena for learning power, stewardship, and material mastery. `; }
+    if ([22].includes(lifePath)) { financeMod += 2; financeInsight += `Life Path 22 builds wealth at institutional scale — your financial expansion tends to be larger and slower than average, but the ceiling is extraordinary. `; }
+    if (['Taurus','Leo','Capricorn','Scorpio'].includes(venusSign)) { financeMod += 1; financeInsight += `Venus in ${venusSign} has strong material instincts — you understand value, investment, and the relationship between beauty and wealth. `; }
+    if (['Capricorn','Taurus'].includes(saturnSign)) { financeMod += 1; financeInsight += `Saturn in ${saturnSign} builds wealth through discipline and patience — you compound better than you speculate. `; }
+    if ([9, 7].includes(lifePath)) { financeMod -= 1; financeInsight += `Life Path ${lifePath} sometimes has a complex relationship with money — financial expansion may come through non-traditional channels or require reconciling material success with spiritual values. `; }
+    chartModifiers.financialExpansion = { modifier: financeMod, insight: financeInsight.trim() };
+    
+    // BURNOUT modifiers
+    let burnoutMod = 0;
+    let burnoutInsight = '';
+    if (marsElement === 'Fire') { burnoutMod += 2; burnoutInsight += `Mars in ${marsSign} runs hot — you push harder than your body and mind can sustain. Your burnout risk is elevated because your drive has no natural governor. Learn to rest before you crash. `; }
+    if (marsElement === 'Earth') { burnoutMod += 1; burnoutInsight += `Mars in ${marsSign} grinds rather than sprints — your burnout pattern is slow accumulation rather than dramatic collapse. By the time you notice, you're already deep in it. `; }
+    if (marsElement === 'Water') { burnoutMod += 1; burnoutInsight += `Mars in ${marsSign} absorbs environmental stress — you burn out from emotional overload as much as overwork. Boundaries are your primary prevention tool. `; }
+    if ([4].includes(lifePath)) { burnoutMod += 2; burnoutInsight += `Life Path 4 is the workhorse path — your drive to build solid foundations can become self-destructive if you don't build rest into the structure itself. `; }
+    if ([1, 8].includes(lifePath)) { burnoutMod += 1; burnoutInsight += `Life Path ${lifePath} ties identity to achievement — burnout hits when you can't separate who you are from what you produce. `; }
+    if (['Capricorn','Virgo'].includes(sunSign)) { burnoutMod += 1; burnoutInsight += `Your ${sunSign} Sun has a high tolerance for overwork that masks accumulating exhaustion — you may not recognize burnout until physical symptoms force the issue. `; }
+    if ([3, 5].includes(lifePath)) { burnoutMod -= 1; burnoutInsight += `Life Path ${lifePath} has natural variety-seeking that provides built-in burnout protection — you instinctively change pace before breaking. `; }
+    chartModifiers.burnout = { modifier: burnoutMod, insight: burnoutInsight.trim() };
+    
+    // Process windows with probability adjustment
     Object.entries(PROBABILITY_WINDOWS).forEach(([key, category]) => {
         const activeWindows = [];
         const upcomingWindows = [];
         const passedWindows = [];
+        const mod = chartModifiers[key] ? chartModifiers[key].modifier : 0;
+        
+        // Probability scale for adjustment
+        const probScale = ['Low', 'Moderate', 'High', 'Very High'];
         
         category.highWindows.forEach(window => {
             const [startAge, endAge] = window.age.split('–').map(Number);
+            
+            // Adjust probability based on chart
+            let baseIndex = probScale.indexOf(window.probability);
+            if (baseIndex < 0) baseIndex = 1;
+            let adjustedIndex = Math.max(0, Math.min(probScale.length - 1, baseIndex + (mod > 2 ? 1 : (mod < -2 ? -1 : 0))));
+            const adjustedProb = probScale[adjustedIndex];
+            const adjustedWindow = { ...window, originalProbability: window.probability, probability: adjustedProb };
+            
             if (age >= startAge && age <= endAge) {
-                activeWindows.push(window);
+                activeWindows.push(adjustedWindow);
             } else if (age < startAge) {
-                upcomingWindows.push({ ...window, yearsUntil: startAge - age });
+                upcomingWindows.push({ ...adjustedWindow, yearsUntil: startAge - age });
             } else {
-                passedWindows.push(window);
+                passedWindows.push(adjustedWindow);
             }
         });
         
@@ -478,21 +608,26 @@ function calculateProbabilityWindows(readings) {
             title: category.title,
             icon: category.icon,
             active: activeWindows,
-            upcoming: upcomingWindows.slice(0, 2), // Next 2 windows
-            passed: passedWindows
+            upcoming: upcomingWindows.slice(0, 2),
+            passed: passedWindows,
+            chartInsight: chartModifiers[key] ? chartModifiers[key].insight : '',
+            personalModifier: mod
         };
     });
     
-    // Add personal year context
+    // Full personal year context — all 9 years covered
     const personalYear = readings.numerology.personalYear;
     let yearContext = '';
-    if (personalYear === 1) yearContext = 'Your Personal Year 1 amplifies new beginnings — career shifts and entrepreneurial launches have extra momentum this year.';
-    else if (personalYear === 4) yearContext = 'Your Personal Year 4 favors building and consolidating — not ideal for major disruptions, but excellent for reinforcing foundations.';
-    else if (personalYear === 5) yearContext = 'Your Personal Year 5 is the change year — relocations, career pivots, and reinvention all have heightened probability.';
-    else if (personalYear === 7) yearContext = 'Your Personal Year 7 favors internal work — psychological reinvention peaks, but external moves may feel forced.';
-    else if (personalYear === 8) yearContext = 'Your Personal Year 8 is the harvest year — financial expansion and career authority peak. Push for results.';
-    else if (personalYear === 9) yearContext = 'Your Personal Year 9 is the completion year — endings and clearing, preparing the ground for the next cycle.';
-    else yearContext = `Your Personal Year ${personalYear} adds its own rhythm to these timing windows.`;
+    if (personalYear === 1) yearContext = 'Your Personal Year 1 amplifies new beginnings — career shifts and entrepreneurial launches have extra momentum this year. Seeds planted now set the trajectory for the next nine-year cycle. This is the year to initiate, not wait.';
+    else if (personalYear === 2) yearContext = 'Your Personal Year 2 is the partnership and patience year. This is not the time for bold solo launches — it\'s the year for building alliances, deepening relationships, and allowing seeds planted last year to germinate. Collaboration multiplies your probability in every category. Partnerships formed now have deep roots.';
+    else if (personalYear === 3) yearContext = 'Your Personal Year 3 is the expression and expansion year. Creative projects, social networking, and visibility all peak. This is an excellent year for anything requiring communication, branding, or public presence. Entrepreneurial ideas that rely on marketing, content, or charisma have amplified windows now. The risk: scattering energy across too many opportunities.';
+    else if (personalYear === 4) yearContext = 'Your Personal Year 4 favors building and consolidating — not ideal for major disruptions, but excellent for reinforcing foundations. This year rewards discipline, structure-building, and patient execution. Financial expansion through steady work outperforms speculation. If you\'re in an active probability window, this year provides the infrastructure to capitalize on it.';
+    else if (personalYear === 5) yearContext = 'Your Personal Year 5 is the change year — relocations, career pivots, and reinvention all have heightened probability. Every window in every category is amplified by the 5\'s change energy. If you\'ve been resisting a shift, this year the pressure becomes irresistible. Relocations initiated now often lead to unexpected expansion.';
+    else if (personalYear === 6) yearContext = 'Your Personal Year 6 is the responsibility and relationship year. Partnership formation probability spikes — this is a classic marriage/commitment year. Home, family, and community take center stage. Career shifts are less likely unless they serve family or relationship goals. Financial expansion comes through service, caregiving, or community-oriented work.';
+    else if (personalYear === 7) yearContext = 'Your Personal Year 7 favors internal work — psychological reinvention peaks, but external moves may feel forced. This is the sabbatical year, the research year, the year of going deeper rather than wider. Burnout risk actually decreases if you honor the 7\'s need for solitude and reflection. Financial expansion through investment analysis or specialized expertise is favored over hustle.';
+    else if (personalYear === 8) yearContext = 'Your Personal Year 8 is the harvest year — financial expansion and career authority peak. Push for results. Everything you\'ve built in years 1 through 7 comes to material fruition now. Entrepreneurial success probability is amplified. This is the year to negotiate, close deals, claim promotions, and assert your professional value. Money responds to directness.';
+    else if (personalYear === 9) yearContext = 'Your Personal Year 9 is the completion year — endings and clearing, preparing the ground for the next cycle. This is the worst year to start new ventures but the best year to conclude, release, and clear what no longer serves. Reinvention probability is high, but it\'s internal clearing rather than external action. Let go of what\'s complete.';
+    else yearContext = `Your Personal Year ${personalYear} (Master Number) operates at heightened intensity across all categories. Master numbers don't follow the standard rhythm — they amplify everything, creating larger windows of both opportunity and pressure.`;
     
     return {
         windows: results,
@@ -610,12 +745,80 @@ function calculateCognitiveTendencies(readings) {
     
     const peakType = peakScore >= 3 ? 'late' : (peakScore <= -1 ? 'early' : 'mid');
     
+    // Intensity indicators (how strongly each dimension is expressed)
+    const riskIntensity = Math.abs(riskScore);
+    const authIntensity = Math.abs(authScore);
+    const innovIntensity = Math.abs(innovScore);
+    const socialIntensity = Math.abs(socialScore);
+    const peakIntensity = Math.abs(peakScore);
+    
+    // Build personalized source citations for each dimension
+    const riskSources = [];
+    if (['Aries','Leo','Sagittarius'].includes(marsSign)) riskSources.push(`Mars in ${marsSign} (fire drive)`);
+    else if (['Taurus','Cancer','Virgo'].includes(marsSign)) riskSources.push(`Mars in ${marsSign} (cautious action)`);
+    if (['Sagittarius','Aries','Leo'].includes(jupiterSign)) riskSources.push(`Jupiter in ${jupiterSign} (bold expansion)`);
+    else if (['Capricorn','Virgo','Cancer'].includes(jupiterSign)) riskSources.push(`Jupiter in ${jupiterSign} (measured growth)`);
+    if ([1, 5, 3].includes(lifePath)) riskSources.push(`Life Path ${lifePath} (action-oriented)`);
+    else if ([4, 6, 2].includes(lifePath)) riskSources.push(`Life Path ${lifePath} (stability-seeking)`);
+    
+    const authSources = [];
+    if (['Aries','Aquarius','Sagittarius','Leo','Scorpio'].includes(sunSign)) authSources.push(`Sun in ${sunSign} (independent identity)`);
+    else if (['Capricorn','Virgo','Cancer','Taurus'].includes(sunSign)) authSources.push(`Sun in ${sunSign} (structure-respecting)`);
+    if ([1, 5, 7].includes(lifePath)) authSources.push(`Life Path ${lifePath} (self-directed)`);
+    else if ([4, 6, 8].includes(lifePath)) authSources.push(`Life Path ${lifePath} (system-building)`);
+    
+    const innovSources = [];
+    if (['Aquarius','Gemini','Sagittarius'].includes(mercurySign)) innovSources.push(`Mercury in ${mercurySign} (experimental thinking)`);
+    else if (['Taurus','Cancer','Virgo','Capricorn'].includes(mercurySign)) innovSources.push(`Mercury in ${mercurySign} (practical thinking)`);
+    if ([5, 1, 3].includes(lifePath)) innovSources.push(`Life Path ${lifePath} (change-seeking)`);
+    else if ([4, 6, 8].includes(lifePath)) innovSources.push(`Life Path ${lifePath} (optimization-focused)`);
+    
+    const socialSources = [];
+    if (['Scorpio','Capricorn','Aquarius','Virgo','Aries','Sagittarius'].includes(moonSign)) socialSources.push(`Moon in ${moonSign} (self-contained processing)`);
+    else if (['Libra','Gemini','Leo','Cancer'].includes(moonSign)) socialSources.push(`Moon in ${moonSign} (relational processing)`);
+    if ([7, 1, 4].includes(lifePath)) socialSources.push(`Life Path ${lifePath} (solitary focus)`);
+    else if ([2, 6, 3, 11].includes(lifePath)) socialSources.push(`Life Path ${lifePath} (people-oriented)`);
+    
+    // Cross-dimension synthesis
+    let synthesis = '';
+    // Risk + Authority interaction
+    if (riskLevel === 'high' && authType === 'challenger') {
+        synthesis += 'Your combination of high risk tolerance and authority-challenging instincts creates a classic entrepreneurial-disruptor profile. You\'re wired to build your own thing, on your own terms, and you have the risk stomach to survive the early stages. ';
+    } else if (riskLevel === 'low' && authType === 'builder') {
+        synthesis += 'Your conservative risk profile combined with structure-building instincts makes you ideal for institutional leadership — you build things that last because you never bet the foundation on a gamble. ';
+    } else if (riskLevel === 'high' && authType === 'builder') {
+        synthesis += 'An unusual combination: you\'re comfortable with risk but respect institutional structure. This makes you the bold insider — the person who pushes organizations further than they\'d go alone, but from within the system rather than outside it. ';
+    } else if (riskLevel === 'low' && authType === 'challenger') {
+        synthesis += 'You challenge authority intellectually but not through risk-taking action. This is the profile of the strategic critic — someone who sees what\'s wrong with systems and articulates it powerfully, often becoming the voice that others rally behind. ';
+    }
+    
+    // Innovation + Social interaction
+    if (innovationType === 'innovator' && socialType === 'independent') {
+        synthesis += 'Your innovation bias combined with independent operation means your best ideas emerge in solitude. You\'re the solo inventor, the writer in the cabin, the researcher who makes the breakthrough alone at 3 AM. Protect that creative isolation. ';
+    } else if (innovationType === 'innovator' && socialType === 'collaborative') {
+        synthesis += 'You innovate best through collaboration — bouncing ideas off others, building on what you hear, and co-creating. Your innovation style is social, which means your environment matters enormously. Surround yourself with other creative minds. ';
+    } else if (innovationType === 'conservator' && socialType === 'collaborative') {
+        synthesis += 'You optimize through teams — your strength is taking what exists, gathering input from diverse perspectives, and systematically improving it. This is the quality control mind that every organization needs but few appreciate enough. ';
+    } else if (innovationType === 'conservator' && socialType === 'independent') {
+        synthesis += 'You optimize in solitude — methodically improving systems with deep, focused attention. Your work environment should give you complex existing problems and the space to solve them without interruption. ';
+    }
+    
+    // Peak timing context
+    if (peakType === 'early' && innovationType === 'innovator') {
+        synthesis += 'With an early peak pattern and innovation bias, your 20s and 30s may be your most visibly productive years — but don\'t mistake early output for your full capacity.';
+    } else if (peakType === 'late' && riskLevel === 'low') {
+        synthesis += 'Your late-blooming profile combined with conservative risk tolerance suggests a compounding life strategy — slow, steady, accumulative, with the biggest results arriving after decades of disciplined work.';
+    } else if (peakType === 'mid' && authType === 'adapter') {
+        synthesis += 'Your mid-career peak aligns with your strategic adaptation — you spend your early years learning the landscape, and your peak arrives when you\'ve fully mapped the terrain and know exactly where to place your effort.';
+    }
+    
     return {
-        riskTolerance: { type: riskLevel, ...COGNITIVE_PROFILES.riskTolerance[riskLevel] },
-        authorityResponse: { type: authType, ...COGNITIVE_PROFILES.authorityResponse[authType] },
-        innovationBias: { type: innovationType, ...COGNITIVE_PROFILES.innovationBias[innovationType] },
-        socialOrientation: { type: socialType, ...COGNITIVE_PROFILES.socialOrientation[socialType] },
-        peakDecade: { type: peakType, ...COGNITIVE_PROFILES.peakDecade[peakType] }
+        riskTolerance: { type: riskLevel, score: riskScore, intensity: riskIntensity, sources: riskSources, ...COGNITIVE_PROFILES.riskTolerance[riskLevel] },
+        authorityResponse: { type: authType, score: authScore, intensity: authIntensity, sources: authSources, ...COGNITIVE_PROFILES.authorityResponse[authType] },
+        innovationBias: { type: innovationType, score: innovScore, intensity: innovIntensity, sources: innovSources, ...COGNITIVE_PROFILES.innovationBias[innovationType] },
+        socialOrientation: { type: socialType, score: socialScore, intensity: socialIntensity, sources: socialSources, ...COGNITIVE_PROFILES.socialOrientation[socialType] },
+        peakDecade: { type: peakType, score: peakScore, intensity: peakIntensity, sources: [], ...COGNITIVE_PROFILES.peakDecade[peakType] },
+        synthesis: synthesis.trim()
     };
 }
 
@@ -680,11 +883,16 @@ function calculateArchetypalRole(readings) {
     
     const sunSign = getSignName(readings.astrology.sunSign);
     const moonSign = getSignName(readings.astrology.moonSign);
+    const risingSign = getSignName(readings.astrology.risingSign);
     const mercurySign = getSignName(readings.astrology.mercurySign);
+    const venusSign = getSignName(readings.astrology.venusSign);
     const marsSign = getSignName(readings.astrology.marsSign);
     const saturnSign = getSignName(readings.astrology.saturnSign);
     const jupiterSign = getSignName(readings.astrology.jupiterSign);
     const plutoSign = getSignName(readings.astrology.plutoSign);
+    const uranusSign = getSignName(readings.astrology.uranusSign);
+    const neptuneSign = getSignName(readings.astrology.neptuneSign);
+    const northNodeSign = getSignName(readings.astrology.northNodeSign);
     const lifePath = readings.numerology.lifePath;
     const destiny = readings.numerology.destiny;
     
@@ -719,6 +927,42 @@ function calculateArchetypalRole(readings) {
     
     // Pluto sign (transformative power)
     if (['Scorpio','Aries'].includes(plutoSign)) { scores.rebuilder += 2; }
+    if (['Capricorn'].includes(plutoSign)) { scores.architect += 1; scores.rebuilder += 1; }
+    
+    // Venus sign (relational & aesthetic mode)
+    if (['Libra','Taurus'].includes(venusSign)) { scores.amplifier += 2; }
+    if (['Virgo','Capricorn'].includes(venusSign)) { scores.architect += 1; scores.strategist += 1; }
+    if (['Gemini','Aquarius'].includes(venusSign)) { scores.translator += 2; }
+    if (['Scorpio','Pisces'].includes(venusSign)) { scores.rebuilder += 1; scores.amplifier += 1; }
+    if (['Aries','Sagittarius'].includes(venusSign)) { scores.catalyst += 2; }
+    if (['Leo'].includes(venusSign)) { scores.amplifier += 1; scores.catalyst += 1; }
+    
+    // Rising sign (instinctive presentation)
+    const risingRoles = {
+        Aries: { catalyst: 2 }, Taurus: { architect: 2 },
+        Gemini: { translator: 2 }, Cancer: { amplifier: 2 },
+        Leo: { catalyst: 1, amplifier: 1 }, Virgo: { architect: 1, translator: 1 },
+        Libra: { translator: 1, amplifier: 1 }, Scorpio: { rebuilder: 2 },
+        Sagittarius: { catalyst: 1, translator: 1 }, Capricorn: { architect: 1, strategist: 1 },
+        Aquarius: { architect: 1, catalyst: 1 }, Pisces: { amplifier: 1, rebuilder: 1 }
+    };
+    if (risingRoles[risingSign]) Object.entries(risingRoles[risingSign]).forEach(([r, v]) => scores[r] += v);
+    
+    // Uranus sign (generational innovation style)
+    if (['Aquarius','Aries'].includes(uranusSign)) { scores.catalyst += 1; }
+    if (['Capricorn','Taurus'].includes(uranusSign)) { scores.architect += 1; }
+    if (['Sagittarius','Gemini'].includes(uranusSign)) { scores.translator += 1; }
+    
+    // Neptune sign (generational vision style)
+    if (['Pisces','Cancer'].includes(neptuneSign)) { scores.amplifier += 1; }
+    if (['Scorpio'].includes(neptuneSign)) { scores.rebuilder += 1; }
+    if (['Capricorn','Aquarius'].includes(neptuneSign)) { scores.architect += 1; }
+    
+    // North Node (soul direction)
+    if (['Aries','Leo','Sagittarius'].includes(northNodeSign)) { scores.catalyst += 2; }
+    if (['Taurus','Virgo','Capricorn'].includes(northNodeSign)) { scores.architect += 1; scores.strategist += 1; }
+    if (['Gemini','Libra','Aquarius'].includes(northNodeSign)) { scores.translator += 2; }
+    if (['Cancer','Scorpio','Pisces'].includes(northNodeSign)) { scores.rebuilder += 1; scores.amplifier += 1; }
     
     // Moon sign (emotional processing → support mode)
     if (['Cancer','Pisces','Taurus'].includes(moonSign)) { scores.amplifier += 2; }
@@ -793,32 +1037,32 @@ const CORNERSTONE_READINGS = {
 };
 
 const CAPSTONE_READINGS = {
-    A: "Endings with A suggest someone who completes through decisive action — they finish what they start with clarity.",
-    B: "The B capstone suggests cooperative completion — tasks are finished through collaboration and consensus.",
-    C: "C endings imply creative closure — bringing flair and expression to the final product.",
-    D: "D capstone projects disciplined completion — systematic, thorough, nothing left undone.",
-    E: "E endings suggest flexible completion — adaptable in how things conclude, open to revision.",
-    F: "F capstone implies protective closure — making sure the outcome serves and shields those involved.",
-    G: "G endings suggest analytical completion — everything is checked, verified, and intellectually sound.",
-    H: "H capstone implies visionary closure — finishing with an eye toward what comes next.",
-    I: "I endings suggest idealistic completion — the result must align with inner values or it doesn't feel finished.",
-    J: "J capstone projects honest closure — completion with integrity, no loose ends or hidden compromises.",
-    K: "K endings imply powerful completion — the finish carries authority and impact.",
-    L: "L capstone suggests graceful closure — tasks end with elegance and social awareness.",
-    M: "M endings project steady completion — reliable, thorough, done right the first time.",
-    N: "N capstone implies original closure — the ending often introduces something new.",
-    O: "O endings suggest emotional completion — it's not done until it feels right at a deep level.",
-    P: "P capstone projects intellectual closure — the conclusion must be logically sound.",
-    Q: "Q endings imply enigmatic completion — the result often contains layers not immediately visible.",
-    R: "R capstone suggests passionate closure — finished with intensity and commitment to quality.",
-    S: "S endings project magnetic completion — the result draws attention and admiration.",
-    T: "T capstone implies purposeful closure — decisive, clean, no wasted energy.",
-    U: "U endings suggest intuitive completion — the outcome often exceeds what was consciously planned.",
-    V: "V capstone projects determined closure — obstacles in the final stretch are overcome through pure will.",
-    W: "W endings imply purposeful completion — the result serves a larger goal beyond itself.",
-    X: "X capstone suggests independent closure — the finish defies expectations in compelling ways.",
-    Y: "Y endings imply spiritual completion — the result carries meaning beyond its practical function.",
-    Z: "Z capstone projects energetic closure — the finish is dynamic and leaves a lasting impression."
+    A: { trait: "Decisive Finisher", description: "Names ending in A suggest someone who completes through decisive action — you finish what you start with clarity and forward momentum. There's no lingering or second-guessing at the finish line; you close chapters with the same boldness that opened them. This gives your work a sense of clean completion that others find refreshing and authoritative." },
+    B: { trait: "Cooperative Closer", description: "The B capstone suggests cooperative completion — tasks are finished through collaboration and consensus. You instinctively bring others into the closing phase, ensuring everyone feels ownership of the outcome. This makes your endings harmonious but occasionally slow, as you wait for alignment before declaring something done." },
+    C: { trait: "Creative Finisher", description: "C endings imply creative closure — you bring flair, expression, and a personal touch to the final product. Nothing you complete feels generic because you can't resist adding your signature at the last moment. This makes your finished work memorable but can also mean projects take longer as you refine the aesthetic details." },
+    D: { trait: "Systematic Closer", description: "D capstone projects disciplined completion — systematic, thorough, nothing left undone. You are the person who checks every box, ties every loose end, and delivers work that requires no follow-up. Others trust your completions implicitly because your D-capstone energy treats 'almost done' as 'not done.'" },
+    E: { trait: "Flexible Finisher", description: "E endings suggest flexible completion — you're adaptable in how things conclude and open to revision even at the last stage. This keeps your work alive and improvable right until delivery. The risk is difficulty declaring something truly finished — your flexibility can become perfectionism if you're not careful about deadlines." },
+    F: { trait: "Protective Closer", description: "F capstone implies protective closure — you make sure the outcome serves and shields those involved. Your completion style prioritizes the well-being of the people affected by the result. This makes you exceptionally trustworthy in high-stakes environments where the consequences of careless completion ripple outward." },
+    G: { trait: "Analytical Finisher", description: "G endings suggest analytical completion — everything is checked, verified, and intellectually sound before you call it done. You're the person who reviews the final draft three times because accuracy matters more than speed. This thoroughness produces work of exceptional reliability, though it can frustrate collaborators who want faster turnarounds." },
+    H: { trait: "Visionary Closer", description: "H capstone implies visionary closure — you finish with an eye toward what comes next. Your completions are never just endings; they're launchpads. This forward-looking quality means your finished work often contains seeds for the next project, the next phase, the next evolution. You close one door while opening three." },
+    I: { trait: "Values-Driven Finisher", description: "I endings suggest idealistic completion — the result must align with your inner values or it doesn't feel finished, regardless of what external metrics say. This makes your work deeply authentic but can create internal conflict when practical constraints clash with your ideals. When the alignment is right, though, your completions carry a rare integrity." },
+    J: { trait: "Honest Closer", description: "J capstone projects honest closure — completion with integrity, no loose ends or hidden compromises. You're incapable of delivering something you know is flawed without flagging it. This radical honesty in completion makes you invaluable in quality-critical environments and trusted absolutely by anyone who works with you." },
+    K: { trait: "Powerful Finisher", description: "K endings imply powerful completion — the finish carries authority and impact. When you complete something, it lands with force. There's nothing tentative about a K-capstone closing; it arrives with confidence and makes its presence felt. This gives your work a gravitas that lighter completion styles can't match." },
+    L: { trait: "Graceful Closer", description: "L capstone suggests graceful closure — tasks end with elegance and social awareness. You have an instinct for ending things well, whether that's a project, a conversation, or a chapter of life. The L-capstone brings a smoothness to completion that makes transitions feel natural rather than jarring. People rarely feel blindsided by your endings." },
+    M: { trait: "Steady Finisher", description: "M endings project steady completion — reliable, thorough, done right the first time. There's a workhorse quality to the M capstone: you put in the work until the work is done, without drama or shortcuts. This consistency makes you the person others rely on when something absolutely has to be finished properly, no excuses." },
+    N: { trait: "Original Closer", description: "N capstone implies original closure — the ending often introduces something new or unexpected. You can't help but add a twist, an innovation, or a fresh perspective in the final stages. This makes your completed work surprising in the best sense — people think they know what's coming, and then you show them something better." },
+    O: { trait: "Emotional Finisher", description: "O endings suggest emotional completion — it's not done until it feels right at a deep, gut level. You trust your emotional intelligence to tell you when something is truly complete, which gives your finished work a resonance that purely analytical completion can't achieve. The risk is that 'feeling done' can be harder to reach than 'being done.'" },
+    P: { trait: "Intellectual Closer", description: "P capstone projects intellectual closure — the conclusion must be logically sound and intellectually defensible. You test your completions against reason before releasing them, which means your finished work holds up under scrutiny. This analytical rigor makes your endings trustworthy and your conclusions difficult to challenge." },
+    Q: { trait: "Enigmatic Finisher", description: "Q endings imply enigmatic completion — the result often contains layers not immediately visible. Your finished work reveals new dimensions over time, like a painting that changes in different light. This depth makes your completions fascinating but occasionally underappreciated at first glance — their full quality emerges on the second and third encounter." },
+    R: { trait: "Passionate Closer", description: "R capstone suggests passionate closure — finished with intensity and commitment to quality. You pour yourself into the final stretch rather than coasting to the finish line. This means your completed work carries heat and energy that others can feel. The R-capstone never phones in a completion; it delivers with full conviction." },
+    S: { trait: "Magnetic Finisher", description: "S endings project magnetic completion — the result draws attention and admiration. There's something about how you finish things that makes people want to see the result. The sibilant quality of S creates a sense of anticipation even in closure — your endings feel like the start of something, not just the stop of something." },
+    T: { trait: "Purposeful Closer", description: "T capstone implies purposeful closure — decisive, clean, no wasted energy. The dental stop of T cuts cleanly; your completions have crisp edges. There's no ambiguity about when something you finished is finished. This precision makes you effective in deadline-driven environments where clean closure is more valuable than elaborate flourishes." },
+    U: { trait: "Intuitive Finisher", description: "U endings suggest intuitive completion — the outcome often exceeds what was consciously planned because you allow unconscious wisdom to guide the final stages. This produces work that surprises even you — the finished product contains insights you didn't know you had. Trusting this process is your key to completion that transcends the mechanical." },
+    V: { trait: "Determined Closer", description: "V capstone projects determined closure — obstacles in the final stretch are overcome through pure will. When others would give up in the last mile, your V-capstone energy pushes through. This tenacity means your completions happen even when conditions are against you, which builds a reputation for reliability under pressure that few can match." },
+    W: { trait: "Mission-Driven Finisher", description: "W endings imply purposeful completion — the result serves a larger goal beyond itself. Your completions are never just about the immediate task; they're building blocks for something bigger. This gives your finished work a sense of meaning and trajectory that purely task-oriented completion styles lack." },
+    X: { trait: "Independent Closer", description: "X capstone suggests independent closure — the finish defies expectations in compelling ways. You don't complete things the way people expect, and that's your strength. The X-capstone brings originality to the finishing process itself, producing outcomes that redefine what was thought possible within the original parameters." },
+    Y: { trait: "Spiritual Finisher", description: "Y endings imply spiritual completion — the result carries meaning beyond its practical function. There's a transcendent quality to how you finish things, as if the completion process itself is a form of meditation or meaning-making. Your finished work often touches people at levels they can't quite articulate." },
+    Z: { trait: "Dynamic Closer", description: "Z capstone projects energetic closure — the finish is dynamic and leaves a lasting impression. Nothing you complete fades quietly into the background. The Z-capstone brings electric energy to endings, making them events rather than formalities. People remember how you finished something long after they forget the middle." }
 };
 
 const FIRST_VOWEL_READINGS = {
@@ -842,7 +1086,8 @@ function calculateNameAnalysis(name) {
     
     // Capstone (last letter of first name)
     const capstone = firstName[firstName.length - 1];
-    const capstoneReading = CAPSTONE_READINGS[capstone] || "Your name ends with a distinctive character, suggesting an unconventional completion style.";
+    const capstoneData = CAPSTONE_READINGS[capstone] || { trait: "Unique Finisher", description: "Your name ends with a distinctive character, suggesting an unconventional completion style." };
+    const capstoneReading = capstoneData.description;
     
     // First vowel
     const vowels = 'AEIOUY';
@@ -903,10 +1148,46 @@ function calculateNameAnalysis(name) {
     authorityScore = Math.min(100, authorityScore);
     approachabilityScore = Math.min(100, approachabilityScore);
     
+    // Cornerstone + Capstone Synthesis
+    let nameSynthesis = '';
+    const csElement = /[BCDGKPQT]/.test(cornerstone) ? 'hard' : (/[AEIOU]/.test(cornerstone) ? 'vowel' : 'soft');
+    const cpElement = /[BCDGKPQT]/.test(capstone) ? 'hard' : (/[AEIOU]/.test(capstone) ? 'vowel' : 'soft');
+    
+    if (csElement === 'hard' && cpElement === 'hard') {
+        nameSynthesis = `Your name opens and closes with hard consonants (${cornerstone} → ${capstone}), creating a name profile of strength bookending strength. People perceive you as formidable from first impression to final delivery. This is a power name — it commands respect in professional environments and projects executive authority. The challenge is that it can create distance in intimate settings where softness is needed.`;
+    } else if (csElement === 'hard' && cpElement === 'vowel') {
+        nameSynthesis = `Your name opens with the authority of ${cornerstone} and closes with the openness of ${capstone} — a powerful combination that projects strength followed by approachability. You make strong first impressions but leave people feeling welcomed. This "iron fist in a velvet glove" pattern is found in many successful leaders who need to be both commanding and likable.`;
+    } else if (csElement === 'hard' && cpElement === 'soft') {
+        nameSynthesis = `Your name opens with force (${cornerstone}) and resolves with softness (${capstone}), creating a natural arc from impact to warmth. People experience you as initially impressive, then increasingly comfortable. This pattern builds trust efficiently — you're taken seriously immediately, then liked quickly.`;
+    } else if (csElement === 'vowel' && cpElement === 'hard') {
+        nameSynthesis = `Your name opens with the approachability of ${cornerstone} and closes with the decisiveness of ${capstone}. People find you easy to approach but come away respecting your substance. This "soft opening, strong close" pattern is excellent for roles where you need people to let their guard down before you deliver impact — teaching, counseling, negotiation, sales.`;
+    } else if (csElement === 'vowel' && cpElement === 'vowel') {
+        nameSynthesis = `Your name opens and closes with vowels (${cornerstone} → ${capstone}), creating maximum openness and musicality. This is the most approachable name pattern — people feel safe, welcomed, and drawn in. In professional settings, you may need to consciously project authority to counterbalance the inherent warmth of your name's sonic signature.`;
+    } else if (csElement === 'vowel' && cpElement === 'soft') {
+        nameSynthesis = `Your name opens with the warmth of ${cornerstone} and flows to the gentleness of ${capstone}. This is a name that puts people at ease — it sounds inviting and trustworthy from start to finish. You project emotional intelligence and accessibility, which makes you magnetic in helping professions, creative fields, and any role requiring genuine human connection.`;
+    } else if (csElement === 'soft' && cpElement === 'hard') {
+        nameSynthesis = `Your name opens with flow (${cornerstone}) and ends with impact (${capstone}), creating a crescendo effect — building from gentleness to strength. People may initially underestimate you, but your finishing power changes their assessment. This pattern serves you well in negotiations and creative work where the ending matters more than the opening.`;
+    } else if (csElement === 'soft' && cpElement === 'vowel') {
+        nameSynthesis = `Your name opens with the fluidity of ${cornerstone} and resolves with the openness of ${capstone}. This creates a name profile of consistent warmth and approachability — no hard edges anywhere. People feel comfortable with you immediately and remain comfortable. The gift is relational ease; the development edge is projecting authority when the situation demands it.`;
+    } else {
+        nameSynthesis = `Your name opens with ${cornerstone} and closes with ${capstone}, creating a consistent flow of soft energy throughout. This projects approachability, emotional intelligence, and creative sensitivity. You're the person others naturally confide in and collaborate with. Your name's sonic signature is an asset in any field requiring trust and relational depth.`;
+    }
+    
+    // Overall name profile type
+    let nameProfile = '';
+    if (dominanceScore > 60 && authorityScore > 50) nameProfile = 'Power Name';
+    else if (warmthScore > 60 && approachabilityScore > 60) nameProfile = 'Warmth Name';
+    else if (memorabilityScore > 70) nameProfile = 'Distinctive Name';
+    else if (brandScore > 70) nameProfile = 'Brand Name';
+    else if (dominanceScore > 40 && warmthScore > 40) nameProfile = 'Balanced Name';
+    else nameProfile = 'Subtle Name';
+    
     return {
         cornerstone: { letter: cornerstone, ...cornerstoneReading },
-        capstone: { letter: capstone, reading: capstoneReading },
+        capstone: { letter: capstone, trait: capstoneData.trait, reading: capstoneReading },
         firstVowel: { letter: firstVowel, ...firstVowelReading },
+        synthesis: nameSynthesis,
+        nameProfile: nameProfile,
         phonetics: {
             dominance: dominanceScore,
             warmth: warmthScore,
@@ -947,6 +1228,9 @@ function calculateLocationStrategy(readings) {
     const moonSign = getSignName(readings.astrology.moonSign);
     const venusSign = getSignName(readings.astrology.venusSign);
     const jupiterSign = getSignName(readings.astrology.jupiterSign);
+    const marsSign = getSignName(readings.astrology.marsSign);
+    const saturnSign = getSignName(readings.astrology.saturnSign);
+    const mercurySign = getSignName(readings.astrology.mercurySign);
     
     // IC is opposite MC (4th house cusp)
     const mcIndex = SIGN_ORDER.indexOf(mcSign);
@@ -998,6 +1282,34 @@ function calculateLocationStrategy(readings) {
             sign: jupiterSign,
             data: SIGN_GEOGRAPHY[jupiterSign] || null,
             explanation: `Jupiter in ${jupiterSign} amplifies your luck and opportunity in locations matching ${jupiterSign} energy — ${(SIGN_GEOGRAPHY[jupiterSign] || {}).themes || 'growth areas'}.`
+        },
+        competition: {
+            title: "Competitive Advantage Zones",
+            subtitle: "Where your drive, energy, and competitive instincts are sharpest",
+            sign: marsSign,
+            data: SIGN_GEOGRAPHY[marsSign] || null,
+            explanation: `Mars in ${marsSign} means your physical energy, competitive instincts, and fighting spirit peak in environments matching ${marsSign} energy. These are the places where you outperform, out-hustle, and out-strategize your competition — where your particular brand of drive resonates with the local culture.`
+        },
+        authority: {
+            title: "Long-Term Authority Zones",
+            subtitle: "Where you build lasting institutional credibility and respect",
+            sign: saturnSign,
+            data: SIGN_GEOGRAPHY[saturnSign] || null,
+            explanation: `Saturn in ${saturnSign} means your authority, discipline, and long-term credibility build most naturally in environments matching ${saturnSign} energy — ${(SIGN_GEOGRAPHY[saturnSign] || {}).themes || 'structured growth'}. These locations may challenge you initially, but they reward sustained effort with deep, lasting respect and institutional standing.`
+        },
+        communication: {
+            title: "Communication & Networking Zones",
+            subtitle: "Where your ideas land best and your voice carries furthest",
+            sign: mercurySign,
+            data: SIGN_GEOGRAPHY[mercurySign] || null,
+            explanation: `Mercury in ${mercurySign} means your communication style, intellectual approach, and networking abilities are most effective in environments matching ${mercurySign} energy. These are the places where people understand how you think, where your writing and speaking resonate, and where professional connections form most naturally.`
+        },
+        emotionalHome: {
+            title: "Emotional Nourishment Zones",
+            subtitle: "Where your emotional body feels most fed and at peace",
+            sign: moonSign,
+            data: SIGN_GEOGRAPHY[moonSign] || null,
+            explanation: `Your Moon in ${moonSign} means your emotional needs — safety, comfort, belonging — are most naturally met in environments matching ${moonSign} energy. This isn't about career or ambition; it's about where you can exhale, recharge, and feel genuinely at home in your own skin. When life gets hard, these are your sanctuary zones.`
         }
     };
     
@@ -1009,9 +1321,26 @@ function calculateLocationStrategy(readings) {
         powerAlignment = `Your career axis and identity axis share the ${mcElement} element — locations matching this energy are doubly powerful for you. You don't just succeed there; you become more yourself while succeeding.`;
     }
     
+    // Additional cross-reference: Mars-MC alignment
+    const marsElement = ELEMENT_MAP[marsSign];
+    let driveAlignment = null;
+    if (marsElement && marsElement === mcElement) {
+        driveAlignment = `Your Mars and Midheaven share the ${marsElement} element — your competitive drive naturally fuels your career path. Locations matching this energy put you in professional environments where aggression and ambition are assets rather than liabilities.`;
+    }
+    
+    // Moon-IC alignment (emotional home matches actual home needs)
+    const moonElement = ELEMENT_MAP[moonSign];
+    const icElement = ELEMENT_MAP[icSign];
+    let rootAlignment = null;
+    if (moonElement && moonElement === icElement) {
+        rootAlignment = `Your Moon and IC share the ${moonElement} element — your emotional needs and your ideal home environment are deeply aligned. When you find a location matching this energy, you'll know immediately that you belong there.`;
+    }
+    
     return {
         zones: results,
         powerAlignment: powerAlignment,
+        driveAlignment: driveAlignment,
+        rootAlignment: rootAlignment,
         hasMC: mcSign !== 'Unknown'
     };
 }

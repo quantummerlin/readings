@@ -189,7 +189,7 @@ var BRAND_CONFIG = {
     // ============================================
     seo: {
         title: "A Moment in Time - Your Complete Cosmic Reading",
-        description: "At the exact moment you were born, the universe created a pattern. Get 80+ personalized insights in astrology, numerology, cognitive profiling, and life pattern analysis. Free and unlimited access.",
+        description: "At the exact moment you were born, the universe created a pattern. Get 95+ personalized insights in astrology, numerology, cognitive profiling, and life pattern analysis. Free and unlimited access.",
         keywords: "a moment in time, astrology reading, numerology reading, birth chart, life path, personalized reading"
     }
 };
