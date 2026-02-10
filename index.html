@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3480541530392777" crossorigin="anonymous"></script>
+    <script>
+    // Graceful ad loading — prevent errors when ad blockers are active
+    window.adsbygoogle = window.adsbygoogle || [];
+    (function() {
+        try {
+            var s = document.createElement('script');
+            s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3480541530392777';
+            s.async = true;
+            s.crossOrigin = 'anonymous';
+            s.onerror = function() { console.log('[Ads] Ad script blocked or unavailable'); };
+            document.head.appendChild(s);
+        } catch(e) { console.log('[Ads] Ad loading failed:', e.message); }
+    })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title id="page-title">Soul Blueprint | Complete Cosmic Reading – Quantum Merlin</title>
