@@ -428,9 +428,15 @@ function collectReadingSections() {
 
     domSections.forEach((section, sIdx) => {
         const header = section.querySelector('.section-header');
-        const sectionName = header
-            ? (header.querySelector('h2')?.textContent || header.querySelector('h3')?.textContent || `Section ${sIdx + 1}`)
-            : `Section ${sIdx + 1}`;
+        let sectionName = `Section ${sIdx + 1}`;
+        if (header) {
+            const hEl = header.querySelector('h2') || header.querySelector('h3');
+            if (hEl) {
+                const hClone = hEl.cloneNode(true);
+                hClone.querySelectorAll('.section-reading-count').forEach(el => el.remove());
+                sectionName = hClone.textContent.trim() || sectionName;
+            }
+        }
         const sectionIcon = header ? (header.querySelector('.section-icon')?.textContent || '') : '';
         const sectionDesc = header ? (header.querySelector('.section-description')?.textContent || header.querySelector('p')?.textContent || '') : '';
 
